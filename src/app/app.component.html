@@ -1,0 +1,77 @@
+<mat-toolbar color="primary">Bounty Progress Calculator</mat-toolbar>
+
+<div class="container">
+  <section class="controls">
+    <mat-form-field appearance="outline">
+      <mat-label>Current bounty points</mat-label>
+      <input matInput type="number" [(ngModel)]="currentBounty" (ngModelChange)="onBountyChange($event)" />
+    </mat-form-field>
+  </section>
+
+  <section class="grid-section" *ngIf="table?.length">
+    <h3>Current Progress</h3>
+    <div class="cards">
+      <app-perk-card [title]="'Damage'" [icon]="'whatshot'" [table]="table" [index]="current[0]" [percentOverride]="currentPercentOverride[0]" (indexChange)="onCurrentChange(0, $event)"></app-perk-card>
+      <app-perk-card [title]="'Life Leech'" [icon]="'favorite'" [table]="table" [index]="current[1]" [percentOverride]="currentPercentOverride[1]" (indexChange)="onCurrentChange(1, $event)"></app-perk-card>
+      <app-perk-card [title]="'Loot'" [icon]="'inventory_2'" [table]="table" [index]="current[2]" [percentOverride]="currentPercentOverride[2]" (indexChange)="onCurrentChange(2, $event)"></app-perk-card>
+      <app-perk-card [title]="'Bestiary'" [icon]="'pets'" [table]="table" [index]="current[3]" [bestiary]="true" [percentOverride]="currentPercentOverride[3]" (indexChange)="onCurrentChange(3, $event)"></app-perk-card>
+    </div>
+  </section>
+
+  <section class="grid-section" *ngIf="table?.length">
+    <h3>Desired Progress</h3>
+    <div class="cards">
+      <app-perk-card [title]="'Damage'" [icon]="'whatshot'" [table]="table" [index]="target[0]" (indexChange)="onTargetChange(0, $event)"></app-perk-card>
+      <app-perk-card [title]="'Life Leech'" [icon]="'favorite'" [table]="table" [index]="target[1]" (indexChange)="onTargetChange(1, $event)"></app-perk-card>
+      <app-perk-card [title]="'Loot'" [icon]="'inventory_2'" [table]="table" [index]="target[2]" (indexChange)="onTargetChange(2, $event)"></app-perk-card>
+      <app-perk-card [title]="'Bestiary'" [icon]="'pets'" [table]="table" [index]="target[3]" [bestiary]="true" (indexChange)="onTargetChange(3, $event)"></app-perk-card>
+    </div>
+  </section>
+
+  <section class="center-calc">
+    <button mat-raised-button color="accent" (click)="calculate()">Calculate</button>
+  </section>
+
+  <section class="results">
+    <h3>Results</h3>
+    <table mat-table [dataSource]="transposedData" class="mat-elevation-z2">
+      <!-- Label Column -->
+      <ng-container matColumnDef="label">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let row">{{ row.label }}</td>
+      </ng-container>
+
+      <!-- Damage -->
+      <ng-container matColumnDef="damage">
+        <th mat-header-cell *matHeaderCellDef>Damage</th>
+        <td mat-cell *matCellDef="let row">{{ row.damage }}</td>
+      </ng-container>
+
+      <!-- Life Leech -->
+      <ng-container matColumnDef="life">
+        <th mat-header-cell *matHeaderCellDef>Life Leech</th>
+        <td mat-cell *matCellDef="let row">{{ row.life }}</td>
+      </ng-container>
+
+      <!-- Loot -->
+      <ng-container matColumnDef="loot">
+        <th mat-header-cell *matHeaderCellDef>Loot</th>
+        <td mat-cell *matCellDef="let row">{{ row.loot }}</td>
+      </ng-container>
+
+      <!-- Bestiary -->
+      <ng-container matColumnDef="bestiary">
+        <th mat-header-cell *matHeaderCellDef>Bestiary</th>
+        <td mat-cell *matCellDef="let row">{{ row.bestiary }}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <div class="summary">
+      <div>Total cost: <strong>{{ totalCost }}</strong></div>
+      <div>Points remaining: <strong>{{ remaining }}</strong></div>
+    </div>
+  </section>
+</div>

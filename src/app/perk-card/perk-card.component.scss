@@ -1,0 +1,22 @@
+.perk-card { width: 200px; }
+.icon { background: transparent; display:flex; align-items:center; justify-content:center; }
+/* Center percentage inside the card content */
+mat-card-content { display: flex; align-items: center; justify-content: center; min-height: 56px; }
+.percent { font-size: 1.1rem; margin: 0; text-align: center; }
+mat-card-actions { display:flex; justify-content:space-between; padding: 8px; }
+
+/* Ensure the header avatar/icon and title are vertically aligned */
+.perk-card .mat-card-header {
+	align-items: center;
+}
+.perk-card .mat-card-avatar {
+	width: 40px;
+	height: 40px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.perk-card .mat-card-avatar mat-icon {
+	font-size: 22px;
+	line-height: 1;
+}

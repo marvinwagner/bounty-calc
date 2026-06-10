@@ -1,0 +1,32 @@
+<mat-card class="perk-card">
+  <mat-card-header>
+    <div mat-card-avatar class="icon"><mat-icon>{{ icon }}</mat-icon></div>
+    <mat-card-title>{{ title }}</mat-card-title>
+  </mat-card-header>
+  <mat-card-actions>
+    <button
+      mat-mini-fab
+      color="primary"
+      (click)="dec()"
+      (mousedown)="startHold('dec', $event)"
+      (mouseup)="stopHold()"
+      (mouseleave)="stopHold()"
+      (touchstart)="startHold('dec', $event)"
+      (touchend)="stopHold()"
+      (touchcancel)="stopHold()"
+    ><mat-icon>remove</mat-icon></button>
+        <div class="percent">{{ getPercentLabel() }}</div>
+
+    <button
+      mat-mini-fab
+      color="primary"
+      (click)="inc()"
+      (mousedown)="startHold('inc', $event)"
+      (mouseup)="stopHold()"
+      (mouseleave)="stopHold()"
+      (touchstart)="startHold('inc', $event)"
+      (touchend)="stopHold()"
+      (touchcancel)="stopHold()"
+    ><mat-icon>add</mat-icon></button>
+  </mat-card-actions>
+</mat-card>
