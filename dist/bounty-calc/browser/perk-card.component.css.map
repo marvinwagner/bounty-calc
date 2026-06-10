@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/perk-card/perk-card.component.scss"],
+  "sourcesContent": [".perk-card { width: 200px; }\r\n.icon { background: transparent; display:flex; align-items:center; justify-content:center; }\r\n.percent { font-size: 1.1rem; margin: 8px 0; }\r\nmat-card-actions { display:flex; justify-content:space-between; padding: 8px; }\r\n"],
+  "mappings": ";AAAA,CAAA;AAAa,SAAA;;AACb,CAAA;AAAQ,cAAA;AAAyB,WAAA;AAAc,eAAA;AAAoB,mBAAA;;AACnE,CAAA;AAAW,aAAA;AAAmB,UAAA,IAAA;;AAC9B;AAAmB,WAAA;AAAc,mBAAA;AAA+B,WAAA;;",
+  "names": []
+}

@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/app.component.scss"],
+  "sourcesContent": [".container { padding: 16px; max-width: 1100px; margin: 0 auto; }\r\n.controls { display:flex; gap:12px; align-items:center; margin:12px 0; }\r\n.grid-section { margin: 18px 0; }\r\n.cards { display:flex; gap:12px; flex-wrap:wrap; }\r\n.results { margin-top: 18px; }\r\n.summary { margin-top: 8px; display:flex; gap:16px; }\r\nmat-form-field { width: 240px; }\r\n"],
+  "mappings": ";AAAA,CAAA;AAAa,WAAA;AAAe,aAAA;AAAmB,UAAA,EAAA;;AAC/C,CAAA;AAAY,WAAA;AAAc,OAAA;AAAU,eAAA;AAAoB,UAAA,KAAA;;AACxD,CAAA;AAAgB,UAAA,KAAA;;AAChB,CAAA;AAAS,WAAA;AAAc,OAAA;AAAU,aAAA;;AACjC,CAAA;AAAW,cAAA;;AACX,CAAA;AAAW,cAAA;AAAiB,WAAA;AAAc,OAAA;;AAC1C;AAAiB,SAAA;;",
+  "names": []
+}
