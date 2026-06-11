@@ -1,5 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { PerkService, PerkRow } from './services/perk.service';
+import { SimpleTranslateService } from './i18n/translate.service';
+import { SimpleTranslatePipe } from './i18n/translate.pipe';
 
 interface ResultRow {
   title: string;
@@ -39,6 +41,7 @@ import { PerkCardComponent } from './perk-card/perk-card.component';
     MatGridListModule,
     MatTableModule,
     PerkCardComponent,
+    SimpleTranslatePipe,
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
@@ -60,8 +63,20 @@ export class AppComponent implements OnInit {
   // For transposed material table
   displayedColumns: string[] = ['label', 'damage', 'life', 'loot', 'bestiary'];
   transposedData: Array<Record<string, any>> = [];
+  isDark = true;
 
-  constructor(private perkService: PerkService, private cdr: ChangeDetectorRef) {}
+  constructor(private perkService: PerkService, private cdr: ChangeDetectorRef, private translateSvc: SimpleTranslateService) {}
+
+  setLang(arg: any) {
+    // accept either a language string or an event
+    let lang: string | undefined;
+    if (typeof arg === 'string') lang = arg;
+    else lang = arg?.target?.value ?? arg?.value;
+    if (!lang) return;
+    try {
+      this.translateSvc.use(lang).subscribe(() => {});
+    } catch (e) {}
+  }
 
   ngOnInit() {
     this.perkService.getTable().subscribe((t) => {
@@ -99,8 +114,36 @@ export class AppComponent implements OnInit {
           // run in next tick to avoid any lingering change-detection issues
           setTimeout(() => this.calculate());
         }
+        // initialize translation using browser language (pt -> pt-BR, otherwise en)
+        try {
+          const nav: any = navigator || {};
+          const navLang = (nav.languages && nav.languages[0]) || nav.language || nav.userLanguage || 'en';
+          const chosen = typeof navLang === 'string' && navLang.toLowerCase().startsWith('pt') ? 'pt-BR' : 'en';
+          this.translateSvc.use(chosen).subscribe(() => {});
+        } catch (e) {}
+
+        // initialize theme: load persisted theme or default to dark
+        try {
+          const savedTheme = localStorage.getItem('bounty-calc-theme') || 'dark';
+          this.applyTheme(savedTheme);
+        } catch (e) {}
       });
     });
+  }
+
+  applyTheme(theme: string) {
+    const link = document.getElementById('app-theme') as HTMLLinkElement | null;
+    if (link) {
+      link.href = theme === 'dark' ? 'assets/themes/theme-dark.css' : 'assets/themes/theme-light.css';
+    }
+    this.isDark = theme === 'dark';
+    try {
+      localStorage.setItem('bounty-calc-theme', theme);
+    } catch (e) {}
+  }
+
+  toggleTheme() {
+    this.applyTheme(this.isDark ? 'light' : 'dark');
   }
 
   onCurrentChange(i: number, value: any) {
@@ -184,14 +227,14 @@ export class AppComponent implements OnInit {
     // build transposedData for mat-table (rows: Upgrades, Cost)
     this.transposedData = [
       {
-        label: 'Upgrades',
+        label: 'UPGRADES',
         damage: this.results[0]?.upgrades || 0,
         life: this.results[1]?.upgrades || 0,
         loot: this.results[2]?.upgrades || 0,
         bestiary: this.results[3]?.upgrades || 0,
       },
       {
-        label: 'Cost',
+        label: 'COST',
         damage: this.results[0]?.cost || 0,
         life: this.results[1]?.cost || 0,
         loot: this.results[2]?.cost || 0,

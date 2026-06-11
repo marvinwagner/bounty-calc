@@ -57,3 +57,18 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 ## Additional Resources
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+
+
+npx ng build --configuration production --base-href "/bounty-calc/"
+npx angular-cli-ghpages --dir=dist/bounty-calc/browser
+
+## Internationalization (i18n)
+
+This project uses `@ngx-translate/core` for runtime translations. Translation files are located in `src/assets/i18n/` (for example `en.json` and `pt-BR.json`). To enable translations locally, install the required packages:
+
+```bash
+npm install @ngx-translate/core @ngx-translate/http-loader --save
+```
+
+Switch the UI language using the selector in the toolbar. The app includes English (`en`) and Brazilian Portuguese (`pt-BR`). Perk card titles and the static `Results` title are intentionally not translated.

@@ -1,15 +1,18 @@
-<mat-toolbar color="primary">Bounty Progress Calculator</mat-toolbar>
+<mat-toolbar color="primary">
+  <span>{{ 'TITLE' | translate }}</span>
+  
+</mat-toolbar>
 
 <div class="container">
   <section class="controls">
     <mat-form-field appearance="outline">
-      <mat-label>Current bounty points</mat-label>
+      <mat-label>{{ 'CURRENT_BOUNTY_POINTS' | translate }}</mat-label>
       <input matInput type="number" [(ngModel)]="currentBounty" (ngModelChange)="onBountyChange($event)" />
     </mat-form-field>
   </section>
 
   <section class="grid-section" *ngIf="table?.length">
-    <h3>Current Progress</h3>
+    <h3>{{ 'CURRENT_PROGRESS' | translate }}</h3>
     <div class="cards">
       <app-perk-card [title]="'Damage'" [icon]="'whatshot'" [table]="table" [index]="current[0]" [percentOverride]="currentPercentOverride[0]" (indexChange)="onCurrentChange(0, $event)"></app-perk-card>
       <app-perk-card [title]="'Life Leech'" [icon]="'favorite'" [table]="table" [index]="current[1]" [percentOverride]="currentPercentOverride[1]" (indexChange)="onCurrentChange(1, $event)"></app-perk-card>
@@ -19,7 +22,7 @@
   </section>
 
   <section class="grid-section" *ngIf="table?.length">
-    <h3>Desired Progress</h3>
+    <h3>{{ 'DESIRED_PROGRESS' | translate }}</h3>
     <div class="cards">
       <app-perk-card [title]="'Damage'" [icon]="'whatshot'" [table]="table" [index]="target[0]" (indexChange)="onTargetChange(0, $event)"></app-perk-card>
       <app-perk-card [title]="'Life Leech'" [icon]="'favorite'" [table]="table" [index]="target[1]" (indexChange)="onTargetChange(1, $event)"></app-perk-card>
@@ -29,16 +32,16 @@
   </section>
 
   <section class="center-calc">
-    <button mat-raised-button color="accent" (click)="calculate()">Calculate</button>
+    <button mat-raised-button color="accent" (click)="calculate()">{{ 'CALCULATE' | translate }}</button>
   </section>
 
   <section class="results">
-    <h3>Results</h3>
+    <h3>{{ 'RESULTS' | translate }}</h3>
     <table mat-table [dataSource]="transposedData" class="mat-elevation-z2">
       <!-- Label Column -->
       <ng-container matColumnDef="label">
         <th mat-header-cell *matHeaderCellDef></th>
-        <td mat-cell *matCellDef="let row">{{ row.label }}</td>
+        <td mat-cell *matCellDef="let row">{{ row.label | translate }}</td>
       </ng-container>
 
       <!-- Damage -->
@@ -70,8 +73,8 @@
     </table>
 
     <div class="summary">
-      <div>Total cost: <strong>{{ totalCost }}</strong></div>
-      <div>Points remaining: <strong>{{ remaining }}</strong></div>
+      <div>{{ 'TOTAL_COST' | translate }}: <strong>{{ totalCost }}</strong></div>
+      <div>{{ 'POINTS_REMAINING' | translate }}: <strong>{{ remaining }}</strong></div>
     </div>
   </section>
 </div>

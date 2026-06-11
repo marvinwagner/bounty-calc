@@ -1,4 +1,4 @@
-Dmg,Vamp/Loot,Bestiary,UpgradeCost,CumulativeCost
+DmgVampLoot,Bestiary,UpgradeCost,CumulativeCost
 2.50,5.00,0,0
 3.00,6.00,5,5
 3.50,7.00,17,22

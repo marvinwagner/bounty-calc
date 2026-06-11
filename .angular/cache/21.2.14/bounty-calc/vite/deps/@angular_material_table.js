@@ -1,23 +1,23 @@
-import "./chunk-ONF4LMPL.js";
 import {
   RtlScrollAxisType,
   getRtlScrollAxisType,
   supportsScrollBehavior
 } from "./chunk-GUGIMSVJ.js";
 import {
+  Platform
+} from "./chunk-QY2X2PCO.js";
+import "./chunk-ONF4LMPL.js";
+import {
   _isNumberValue,
   coerceElement,
   coerceNumberProperty
-} from "./chunk-YRHJORZS.js";
-import {
-  Platform
-} from "./chunk-KGEO4IUI.js";
+} from "./chunk-6JON2VKN.js";
 import {
   BidiModule,
   Directionality
-} from "./chunk-PZTVTICT.js";
-import "./chunk-XYOUHFP7.js";
-import "./chunk-ZEQMXV5A.js";
+} from "./chunk-4CNGVXKM.js";
+import "./chunk-RB3TI2F3.js";
+import "./chunk-5FW355BI.js";
 import {
   ApplicationRef,
   ChangeDetectionStrategy,
@@ -46,14 +46,10 @@ import {
   ViewContainerRef,
   ViewEncapsulation,
   afterNextRender,
-  animationFrameScheduler,
-  asapScheduler,
   booleanAttribute,
   effect,
   forwardRef,
   inject,
-  isObservable,
-  merge,
   setClassMetadata,
   signal,
   untracked,
@@ -89,7 +85,14 @@ import {
   ɵɵtext,
   ɵɵtextInterpolate1,
   ɵɵviewQuery
-} from "./chunk-VATSQLUF.js";
+} from "./chunk-2AOJSKYU.js";
+import "./chunk-4YCCEXQQ.js";
+import {
+  animationFrameScheduler,
+  asapScheduler,
+  isObservable,
+  merge
+} from "./chunk-J46EEYGT.js";
 import {
   BehaviorSubject,
   ConnectableObservable,
@@ -109,7 +112,7 @@ import {
   startWith,
   switchMap,
   takeUntil
-} from "./chunk-M3ILCWXM.js";
+} from "./chunk-U7EDC2PH.js";
 
 // node_modules/@angular/cdk/fesm2022/_data-source-chunk.mjs
 var DataSource = class {
